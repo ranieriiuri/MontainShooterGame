@@ -11,7 +11,9 @@ from code.Const import WIN_WIDTH, C_ORANGE, MENU_OPTION, C_WHITE, C_YELLOW
 class Menu:
     def __init__(self, window):
         self.window = window
+        #traz a imagem do menu
         self.surf = pygame.image.load('./asset/MenuBg.png').convert_alpha()
+        #define q comece do canto superior esquerdo e do topo e se estenda, ou seja, pegue o quadro inteiro
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):
