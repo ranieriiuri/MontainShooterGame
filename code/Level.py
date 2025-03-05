@@ -27,12 +27,14 @@ class Level:
         player = EntityFactory.get_entity('Player1')
         player.score = player_score[0]
         self.entity_list.append(player)
+        #caso no menu tenha sido escolhido as opções de player 2 cooperative ou competitive...
         if game_mode in [MENU_OPTION[1], MENU_OPTION[2]]:
             player = EntityFactory.get_entity('Player2')
-            player.score = player_score[1]
+            player.score = player_score[1] #esse score é do P2, o do P1 é na posição 0
             self.entity_list.append(player)
+            #usa um timer para criar os inimigos baseado na const criada no arq. 'const'... 'spawn' é criar um novo processo, essa const set 3s para criar um novo inimigo
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
-        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # 100ms
+        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # 1s
 
     def run(self, player_score: list[int]):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
@@ -56,6 +58,7 @@ class Level:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                    #qnd bater o tempo de criação do inimigo, escolher randômicamente entre 1 ou 2 e usar a factory p criar
                 if event.type == EVENT_ENEMY:
                     choice = random.choice(('Enemy1', 'Enemy2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))

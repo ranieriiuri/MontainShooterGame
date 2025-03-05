@@ -26,9 +26,11 @@ class EntityFactory:
                     list_bg.append(Background(f'Level2Bg{i}', (WIN_WIDTH, 0)))
                 return list_bg
             case 'Player1':
+                #lembrando q o constructor do player requer um nome e uma posição em tupla. Nos players definimos com constantes e os 2 iniciando em posições diferentes
                 return Player('Player1', (10, WIN_HEIGHT / 2 - 30))
             case 'Player2':
                 return Player('Player2', (10, WIN_HEIGHT / 2 + 30))
+            #Já nos inimigos usamos a func 'randint' p gerá-los em posiçṍes iniciais randômicas (deixando o jogo mais dinâmico)
             case 'Enemy1':
                 return Enemy('Enemy1', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))
             case 'Enemy2':
