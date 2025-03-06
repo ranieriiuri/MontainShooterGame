@@ -27,6 +27,8 @@ class Player(Entity):
             self.rect.centerx += ENTITY_SPEED[self.name]
         pass
 
+    #O proprio player é responsavel pela lógica do tiro. A classe 'PlayerShot' apenas representa o tiro (como entidade) e define q ele será disparado somente reto pera direita e na velocidade da entidade (player1shot, player2shot, enemy1shot ou enemy2shot)
+    #Sempre q um player dispara é criado uma entidade 'PlayerShot', q dura até atingir um alvo ou chegar ao fim da tela e depois é destruída
     def shoot(self):
         self.shot_delay -= 1
         if self.shot_delay == 0:
