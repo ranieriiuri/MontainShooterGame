@@ -32,6 +32,7 @@ class EntityMediator:
         elif isinstance(ent1, EnemyShot) and isinstance(ent2, Player):
             valid_interaction = True
 
+        #aqui aplica-se os danos usando a lógica das 4 perguntas básicas q devem responder sim para haver dano: "Se a borda dir da ent1 estiver depois ou igual a borda esq da ent2, a esq da ent1 antes da dir da ent2, a borda de baixo da ent1 acima da borda superior da ent2 e a de cima da ent1 estiver abaixo da ent2", se todas as perguntas tiverem resposta sim, há colisão, então há dano contabilizado no atributo 'damage' q diminui a vida da ent
         if valid_interaction:  # if valid_interaction == True:
             if (ent1.rect.right >= ent2.rect.left and
                     ent1.rect.left <= ent2.rect.right and
@@ -42,6 +43,7 @@ class EntityMediator:
                 ent1.last_dmg = ent2.name
                 ent2.last_dmg = ent1.name
 
+    #o score à ent player1 ou 2 vem quando o atributo 'last_dmg' da ent enemy é preenchido
     @staticmethod
     def __give_score(enemy: Enemy, entity_list: list[Entity]):
         if enemy.last_dmg == 'Player1Shot':
@@ -53,6 +55,7 @@ class EntityMediator:
                 if ent.name == 'Player2':
                     ent.score += enemy.score
 
+#esse metodo é o que de fato define um comportamento para casos de colisão das entidades com a borda da janela definida e tbm verifica colisão de todas as entidades entre si (inclusive das entidades tiros com as outras), chamando os metodos de colisão para janelas e entities definidos acima em um loop onde passa as entidades de cada iteração como param
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
         for i in range(len(entity_list)):

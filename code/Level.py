@@ -34,7 +34,7 @@ class Level:
             self.entity_list.append(player)
             #usa um timer para criar os inimigos baseado na const criada no arq. 'const'... 'spawn' é criar um novo processo, essa const set 3s para criar um novo inimigo
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
-        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # 1s
+        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # 16s
 
     def run(self, player_score: list[int]):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
