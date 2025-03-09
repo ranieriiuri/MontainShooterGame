@@ -44,7 +44,7 @@ class Level:
         while True:
             clock.tick(60)
             for ent in self.entity_list:
-                if isinstance(ent, Player):
+                if isinstance(ent, (Player, Enemy)):
                     ent.render(self.window)
                 else:
                     self.window.blit(source=ent.surf, dest=ent.rect)

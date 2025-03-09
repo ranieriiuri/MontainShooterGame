@@ -44,10 +44,6 @@ class EntityMediator:
                 ent1.last_dmg = ent2.name
                 ent2.last_dmg = ent1.name
 
-                # Se o jogador tomou dano, faz ele piscar
-                #if isinstance(ent1, Player):
-                #   ent1.blink_timer += 10  # Ativa o efeito de piscar
-
     #o score à ent player1 ou 2 vem quando o atributo 'last_dmg' da ent enemy é preenchido
     @staticmethod
     def __give_score(enemy: Enemy, entity_list: list[Entity]):
@@ -77,6 +73,7 @@ class EntityMediator:
                 if isinstance(ent, Enemy):
                     EntityMediator.__give_score(ent, entity_list)
                 entity_list.remove(ent)
-            # Se o jogador estiver com vida e a contagem do piscar for maior que zero, diminui o tempo do piscar
-            if isinstance(ent, Player) and ent.blink_timer > 0:
+
+            # Se o player ou o inimigo estiverem com vida e a contagem do piscar for maior que zero, diminui o tempo do piscar em cada iteração do numero setado pelo take_damage até zerar (qnd para de piscar)
+            if isinstance(ent, (Player, Enemy)) and ent.blink_timer > 0:
                  ent.blink_timer -= 1  # Diminui o contador do piscar
