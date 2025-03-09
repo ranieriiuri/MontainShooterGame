@@ -38,8 +38,13 @@ class EntityMediator:
                     ent1.rect.left <= ent2.rect.right and
                     ent1.rect.bottom >= ent2.rect.top and
                     ent1.rect.top <= ent2.rect.bottom):
-                #ent1.health -= ent2.damage <-- forma antiga
-                ent1.take_damage(ent2.damage)  # Aqui chama o take_damage do jogador
+
+                # Chama take_damage apenas para o Player, já que só o Player tem esse método
+                if isinstance(ent1, (Player, Enemy)):  # Se ent1 for o Player
+                    ent1.take_damage(ent2.damage)
+                if isinstance(ent2, (Player, Enemy)):  # Se ent2 for o Player
+                    ent2.take_damage(ent1.damage)
+
                 ent2.health -= ent1.damage
                 ent1.last_dmg = ent2.name
                 ent2.last_dmg = ent1.name

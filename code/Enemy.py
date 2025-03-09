@@ -22,7 +22,7 @@ class Enemy(Entity):
 
     def take_damage(self, damage):
         self.health -= damage
-        self.blink_timer = 60  # Define o tempo de piscamento quando tomar dano
+        self.blink_timer = 10  # Define o tempo de piscamento quando tomar dano
 
     def render(self, screen):
         if self.blink_timer % 2 == 0:  # Alterna a visibilidade durante o piscamento
