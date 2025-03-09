@@ -1,5 +1,6 @@
 # C
 import pygame
+import os
 
 C_ORANGE = (255, 128, 0)
 C_YELLOW = (255, 255, 128)
@@ -154,3 +155,17 @@ SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              8: (WIN_WIDTH / 2, 270),
              9: (WIN_WIDTH / 2, 290),
              }
+
+# Caminho base do projeto (pasta raiz)
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+# Lista de frames da explosão
+EXPLOSION_FRAMES = [
+    os.path.join(BASE_DIR, "asset/EnemiesExplosion/explosion1.png"),
+    os.path.join(BASE_DIR, "asset/EnemiesExplosion/explosion2.png"),
+    os.path.join(BASE_DIR, "asset/EnemiesExplosion/explosion3.png"),
+    os.path.join(BASE_DIR, "asset/EnemiesExplosion/explosion4.png"),
+    os.path.join(BASE_DIR, "asset/EnemiesExplosion/explosion5.png"),
+]
+#const do som da explosão
+EXPLOSION_SOUND = os.path.join(BASE_DIR, "asset/EnemiesExplosion/EnemiesExplSound.wav")

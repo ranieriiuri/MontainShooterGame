@@ -75,10 +75,12 @@ class EntityMediator:
     def verify_health(entity_list: list[Entity]):
         for ent in entity_list:
             if ent.health <= 0:
-                if isinstance(ent, Enemy):
-                    EntityMediator.__give_score(ent, entity_list)
-                entity_list.remove(ent)
-
+                if isinstance(ent, Enemy) and ent.exploding:
+                    if ent.explosion_index >= len(ent.explosion_frames):
+                        EntityMediator.__give_score(ent, entity_list)
+                        entity_list.remove(ent)
+                elif isinstance(ent, Enemy):  # Se for inimigo, só inicia explosão
+                    ent.exploding = True
             # Se o player ou o inimigo estiverem com vida e a contagem do piscar for maior que zero, diminui o tempo do piscar em cada iteração do numero setado pelo take_damage até zerar (qnd para de piscar)
             if isinstance(ent, Player) and ent.blink_timer > 0:
                  ent.blink_timer -= 1  # Diminui o contador do piscar
