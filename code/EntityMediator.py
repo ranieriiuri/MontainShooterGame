@@ -80,5 +80,5 @@ class EntityMediator:
                 entity_list.remove(ent)
 
             # Se o player ou o inimigo estiverem com vida e a contagem do piscar for maior que zero, diminui o tempo do piscar em cada iteração do numero setado pelo take_damage até zerar (qnd para de piscar)
-            if isinstance(ent, (Player, Enemy)) and ent.blink_timer > 0:
+            if isinstance(ent, Player) and ent.blink_timer > 0:
                  ent.blink_timer -= 1  # Diminui o contador do piscar
