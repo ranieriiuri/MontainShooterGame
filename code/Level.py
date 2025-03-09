@@ -44,7 +44,10 @@ class Level:
         while True:
             clock.tick(60)
             for ent in self.entity_list:
-                self.window.blit(source=ent.surf, dest=ent.rect)
+                if isinstance(ent, Player):
+                    ent.render(self.window)
+                else:
+                    self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
                 if isinstance(ent, (Player, Enemy)):
                     shoot = ent.shoot()

@@ -12,6 +12,7 @@ class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
         self.shot_delay = ENTITY_SHOT_DELAY[self.name]
+        self.blink_timer = 0
 
     def move(self):
         pressed_key = pygame.key.get_pressed() #obtém todas as teclas pressionadas no momento
@@ -28,6 +29,17 @@ class Player(Entity):
         if pressed_key[PLAYER_KEY_RIGHT[self.name]] and self.rect.right < WIN_WIDTH:
             self.rect.centerx += ENTITY_SPEED[self.name]
         pass
+
+#TESTING EFFECTS AROUND
+    def take_damage(self, damage):
+        self.health -= damage
+        self.blink_timer = 40  # Define um tempo para piscar
+
+    def render(self, screen):
+        if self.blink_timer % 2 == 0:  # Pisca ao sofrer dano
+            screen.blit(self.surf, self.rect)
+        if self.blink_timer > 0:
+            self.blink_timer -= 1 #decrementa o blink_timer ao renderizar
 
     #O proprio player é responsavel pela lógica do tiro. A classe 'PlayerShot' apenas representa o tiro (como entidade) e define q ele será disparado somente reto pera direita e na velocidade da entidade (player1shot, player2shot, enemy1shot ou enemy2shot)
     #Sempre q um player dispara é criado uma entidade 'PlayerShot', q dura até atingir um alvo ou chegar ao fim da tela e depois é destruída
