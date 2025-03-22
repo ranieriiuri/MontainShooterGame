@@ -156,6 +156,7 @@ SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              9: (WIN_WIDTH / 2, 290),
              }
 
+#CONSTANTES USADAS EM EFEITOS ADICIONAIS
 # Caminho base do projeto (pasta raiz)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 

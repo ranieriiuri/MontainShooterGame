@@ -26,9 +26,10 @@ class Score:
             self.window.blit(source=self.surf, dest=self.rect)
             #ao finalizar o jogo seta o nome do vencedor
             self.score_text(48, 'YOU WIN!!', C_YELLOW, SCORE_POS['Title'])
-            # pede o nome da pessoa q ganhou com o P1
+            # pede o nome da pessoa q ganhou com o P1 (por padrão)
             text = 'Enter Player 1 name (4 characters):'
-            score = player_score[0] #seta o essa var com o param score recebido pelo metodo
+            score = player_score[0] #seta essa var com o param score recebido pelo metodo. tbm por padrão sendo a escolha do P1
+            # esses padrões são mudados conforme seja cooperative ou competitive escolhido
 
             #se for modo normal (1 player)
             if game_mode == MENU_OPTION[0]:
